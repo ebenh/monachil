@@ -62,13 +62,18 @@ def get_rainy_days(rain_data: list) -> list:
 
 
 if __name__ == '__main__':
+    sys.tracebacklimit = 0
+
     try:
         rain_data = get_rain_data()
     except FileNotFoundError:
-        sys.stderr.write('Rain data file not found.')
-        sys.exit(1)
+        raise SystemExit('Rain data file not found.')
 
-    city = str(input("Enter city name:[San Jose]") or "San Jose")
+    try:
+        city = str(input("Enter city name:[San Jose]") or "San Jose")
+    except ValueError as e:
+        raise SystemExit(e)
+
     c_lat, c_lon = get_lat_lon(city)
     dates = get_rainy_days(rain_data)
 
