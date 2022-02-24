@@ -52,9 +52,9 @@ def get_rainy_days(location: tuple, data: list, dist_thresh=0.05, rain_thresh=8.
     rain_days = list()
     for row in data:
         t, lat, lon, rain = row
-        lat_diff = abs(float(lat) - location[0])
-        lon_diff = abs(float(lon) - location[1])
         if rain != "NaN" and float(rain) >= rain_thresh:
+            lat_diff = abs(float(lat) - location[0])
+            lon_diff = abs(float(lon) - location[1])
             if lat_diff < dist_thresh and lon_diff < dist_thresh:
                 rain_days.append((t[:10], rain))
     return rain_days
