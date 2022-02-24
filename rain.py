@@ -46,7 +46,7 @@ def get_lat_lon(city: str) -> tuple:
     return lat, lon
 
 
-def get_rainy_days(location: tuple, data: list, dist_thresh=0.05, rain_thresh=8.0) -> list:
+def filter_rainy_days(location: tuple, data: list, dist_thresh=0.05, rain_thresh=8.0) -> list:
     assert len(location) == 2
 
     rain_days = list()
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     except requests.exceptions.RequestException:
         raise SystemExit('Network error.')
 
-    dates = get_rainy_days(city_lat_lon, rain_data)
+    dates = filter_rainy_days(city_lat_lon, rain_data)
 
     # dates=sorted(list(set(dates)))
     for item in dates:

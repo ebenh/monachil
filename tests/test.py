@@ -1,5 +1,5 @@
 import unittest
-from rain import get_rain_data, get_lat_lon
+from rain import get_rain_data, get_lat_lon, filter_rainy_days
 
 
 class Tests(unittest.TestCase):
@@ -22,3 +22,6 @@ class Tests(unittest.TestCase):
 
     def test_get_lat_lon_invalid_city(self):
         self.assertRaises(ValueError, get_lat_lon, 'FooBazBar')
+
+    def test_get_rainy_days_no_data(self):
+        self.assertEqual(filter_rainy_days((43.6534817, -79.3839347), []), [])
