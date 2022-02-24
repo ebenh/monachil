@@ -1,4 +1,5 @@
 import csv
+import sys
 import requests
 
 
@@ -57,9 +58,14 @@ def get_rainy_days(rain_data: list) -> list:
 
 
 if __name__ == '__main__':
+    try:
+        rain_data = get_rain_data()
+    except FileNotFoundError:
+        sys.stderr.write('Rain data file not found.')
+        sys.exit(1)
+
     city = str(input("Enter city name:[San Jose]") or "San Jose")
     c_lat, c_lon = get_lat_lon(city)
-    rain_data = get_rain_data()
     dates = get_rainy_days(rain_data)
 
     # dates=sorted(list(set(dates)))
