@@ -9,21 +9,20 @@ import requests
 # note eben: The url above had an invalid parameter, had to set stride from 0.25 to 1
 # https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalPentadP05.csv?precip%5B(2021-8-01T00:00:00Z):1:(2021-11-26T00:00:00Z)%5D%5B(30.0):1:(42.0)%5D%5B(-123.0):1:(-113.0)%5D
 
-def get_rain_data() -> list:
-    csv_file = open("chirps20GlobalPentadP05_1da0_1624_398c.csv")
-    csv_reader = csv.reader(csv_file, delimiter=",")
-    line_count = 0
-    rain_data = list()
-    for row in csv_reader:
-        line_count += 1
-        if line_count <= 2:
-            # print(f'Column names are {", ".join(row)}')
-            continue
-        elif line_count >= 10e10:
-            break
-        rain_data.append(row)
-    csv_file.close()
-    return rain_data
+def get_rain_data(file="chirps20GlobalPentadP05_1da0_1624_398c.csv") -> list:
+    with open(file) as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=",")
+        line_count = 0
+        rain_data = list()
+        for row in csv_reader:
+            line_count += 1
+            if line_count <= 2:
+                # print(f'Column names are {", ".join(row)}')
+                continue
+            elif line_count >= 10e10:
+                break
+            rain_data.append(row)
+        return rain_data
 
 
 def get_lat_lon(city: str) -> tuple:
