@@ -8,3 +8,5 @@ class TestNumbers(unittest.TestCase):
         self.assertEqual(len(rain_data), 1162584)
         self.assertEqual(len(rain_data[0]), 4)
 
+    def test_get_rain_data_nonexistent_file(self):
+        self.assertRaises(FileNotFoundError, get_rain_data, '/home/eben/foo.csv')
