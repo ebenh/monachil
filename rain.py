@@ -32,7 +32,7 @@ def get_rain_data():
 def get_lat_lon(city):
     response = requests.get(
         "https://nominatim.openstreetmap.org/search.php?city="
-        + val
+        + city
         + "&format=jsonv2&namedetails=0&addressdetails=0&limit=1"
     )
     city_data = response.json()
@@ -59,8 +59,8 @@ def get_rainy_days(rain_data):
 
 
 if __name__ == '__main__':
-    val = str(input("Enter city name:[San Jose]") or "San Jose")
-    c_lat, c_lon = get_lat_lon(val)
+    city = str(input("Enter city name:[San Jose]") or "San Jose")
+    c_lat, c_lon = get_lat_lon(city)
     rain_data = get_rain_data()
     dates = get_rainy_days(rain_data)
 
