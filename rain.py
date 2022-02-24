@@ -38,9 +38,9 @@ def get_lat_lon(city: str) -> tuple:
         raise ValueError(f"{city} doesn't appear to be a valid city.")
 
     try:
-        c_lat = city_data[0]["lat"]
-        c_lon = city_data[0]["lon"]
-    except KeyError:
+        c_lat = float(city_data[0]["lat"])
+        c_lon = float(city_data[0]["lon"])
+    except (KeyError, ValueError):
         raise RuntimeError('Retrieved invalid city data form web service.')
 
     return c_lat, c_lon
@@ -53,8 +53,8 @@ def get_rainy_days(rain_data: list) -> list:
     for row in rain_data:
         t, lat, lon, rain = row
         t = t[:10]
-        lat_diff = abs(float(lat) - float(c_lat))
-        lon_diff = abs(float(lon) - float(c_lon))
+        lat_diff = abs(float(lat) - c_lat)
+        lon_diff = abs(float(lon) - c_lon)
         if rain != "NaN":
             if float(rain) >= rain_thresh:
                 if lat_diff < dist_thresh:
