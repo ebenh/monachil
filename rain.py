@@ -67,13 +67,12 @@ if __name__ == '__main__':
     except FileNotFoundError:
         raise SystemExit('Rain data file not found.')
 
-    try:
-        city = str(input("Enter city name:[San Jose]") or "San Jose")
-    except ValueError as e:
-        raise SystemExit(e)
+    city = str(input("Enter city name:[San Jose]") or "San Jose")
 
     try:
         c_lat, c_lon = get_lat_lon(city)
+    except ValueError as e:
+        raise SystemExit(e)
     except requests.exceptions.HTTPError as e:
         raise SystemExit(e)
     except requests.exceptions.RequestException:
