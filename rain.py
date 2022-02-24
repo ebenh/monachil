@@ -12,7 +12,7 @@ import pprint
 
 # csv_file = open("/home/moe/Downloads/chirps20GlobalPentadP05_233e_7ccc_b137.csv")
 
-def get_rain_data():
+def get_rain_data() -> list:
     csv_file = open("chirps20GlobalPentadP05_1da0_1624_398c.csv")
     csv_reader = csv.reader(csv_file, delimiter=",")
     line_count = 0
@@ -29,7 +29,7 @@ def get_rain_data():
     return rain_data
 
 
-def get_lat_lon(city):
+def get_lat_lon(city: str) -> tuple:
     response = requests.get(
         "https://nominatim.openstreetmap.org/search.php?city="
         + city
@@ -41,7 +41,7 @@ def get_lat_lon(city):
     return c_lat, c_lon
 
 
-def get_rainy_days(rain_data):
+def get_rainy_days(rain_data: list) -> list:
     dist_thresh = 0.05
     rain_thresh = 8.0
     dates = list()
