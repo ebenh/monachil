@@ -1,6 +1,5 @@
 import csv
 import requests
-import pprint
 
 
 # rain data from .
