@@ -2,7 +2,7 @@
 
 1. Clone the repo:
 
-        $ git clone https://github.com/ebenh/monachil/
+        $ git clone https://github.com/ebenh/precip/
 
 2. Install `pipenv` if you haven't already:
 
