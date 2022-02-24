@@ -46,9 +46,9 @@ def get_lat_lon(city: str) -> tuple:
     return lat, lon
 
 
-def get_rainy_days(rain_data: list, dist_thresh=0.05, rain_thresh=8.0) -> list:
-    dates = list()
-    for row in rain_data:
+def get_rainy_days(data: list, dist_thresh=0.05, rain_thresh=8.0) -> list:
+    rain_days = list()
+    for row in data:
         t, lat, lon, rain = row
         t = t[:10]
         lat_diff = abs(float(lat) - c_lat)
@@ -57,8 +57,8 @@ def get_rainy_days(rain_data: list, dist_thresh=0.05, rain_thresh=8.0) -> list:
             if float(rain) >= rain_thresh:
                 if lat_diff < dist_thresh:
                     if lon_diff < dist_thresh:
-                        dates.append((t, rain))
-    return dates
+                        rain_days.append((t, rain))
+    return rain_days
 
 
 if __name__ == '__main__':
