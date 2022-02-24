@@ -34,20 +34,20 @@ def load_rain_data(filename=None) -> list:
         return rows
 
 
-def get_lat_lon(city: str) -> tuple:
+def get_lat_lon(city_name: str) -> tuple:
     """
     Get the longitude and latitude of a city.
-    :param city: The name of the city.
+    :param city_name: The name of the city.
     :return: The longitude and latitude of the city as a two-tuple.
     :raises: ValueError, requests.exceptions.HTTPError, requests.exceptions.RequestException
     """
-    query = {'city': city, 'format': 'jsonv2', 'namedetails': 0, 'addressdetails': 0, 'limit': 1}
+    query = {'city': city_name, 'format': 'jsonv2', 'namedetails': 0, 'addressdetails': 0, 'limit': 1}
     response = requests.get("https://nominatim.openstreetmap.org/search.php", query)
     response.raise_for_status()
     city_data = response.json()
 
     if len(city_data) == 0:
-        raise ValueError(f"{city} doesn't appear to be a valid city.")
+        raise ValueError(f"{city_name} doesn't appear to be a valid city.")
 
     try:
         lat = float(city_data[0]["lat"])
