@@ -15,6 +15,7 @@ def load_rain_data(filename=None) -> list:
     Load precipitation data from file.
     :param filename: The path to the CSV file containing precipitation data.
     :return: The contents of filename as a list.
+    :raises: FileNotFoundError
     """
     import pathlib
     filename = filename or pathlib.Path(__file__).parent.joinpath(
@@ -39,6 +40,7 @@ def get_lat_lon(city: str) -> tuple:
     Get the longitude and latitude of a city.
     :param city: The name of the city.
     :return: The longitude and latitude of the city as a two-tuple.
+    :raises: ValueError, requests.exceptions.HTTPError, requests.exceptions.RequestException
     """
     query = {'city': city, 'format': 'jsonv2', 'namedetails': 0, 'addressdetails': 0, 'limit': 1}
     response = requests.get("https://nominatim.openstreetmap.org/search.php", query)
