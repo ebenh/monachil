@@ -35,6 +35,10 @@ def get_lat_lon(city: str) -> tuple:
         + "&format=jsonv2&namedetails=0&addressdetails=0&limit=1"
     )
     city_data = response.json()
+
+    if len(city_data) == 0:
+        raise ValueError(f"{city} doesn't appear to be a valid city.")
+
     c_lat = city_data[0]["lat"]
     c_lon = city_data[0]["lon"]
     return c_lat, c_lon
