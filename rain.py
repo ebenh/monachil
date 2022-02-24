@@ -46,13 +46,15 @@ def get_lat_lon(city: str) -> tuple:
     return lat, lon
 
 
-def get_rainy_days(data: list, dist_thresh=0.05, rain_thresh=8.0) -> list:
+def get_rainy_days(location: tuple, data: list, dist_thresh=0.05, rain_thresh=8.0) -> list:
+    assert len(location) == 2
+
     rain_days = list()
     for row in data:
         t, lat, lon, rain = row
         t = t[:10]
-        lat_diff = abs(float(lat) - c_lat)
-        lon_diff = abs(float(lon) - c_lon)
+        lat_diff = abs(float(lat) - location[0])
+        lon_diff = abs(float(lon) - location[1])
         if rain != "NaN":
             if float(rain) >= rain_thresh:
                 if lat_diff < dist_thresh:
@@ -72,7 +74,7 @@ if __name__ == '__main__':
     city = str(input("Enter city name:[San Jose]") or "San Jose")
 
     try:
-        c_lat, c_lon = get_lat_lon(city)
+        city_lat_lon = get_lat_lon(city)
     except ValueError as e:
         raise SystemExit(e)
     except requests.exceptions.HTTPError as e:
@@ -80,7 +82,7 @@ if __name__ == '__main__':
     except requests.exceptions.RequestException:
         raise SystemExit('Network error.')
 
-    dates = get_rainy_days(rain_data)
+    dates = get_rainy_days(city_lat_lon, rain_data)
 
     # dates=sorted(list(set(dates)))
     for item in dates:
