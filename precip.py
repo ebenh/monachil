@@ -52,7 +52,7 @@ def get_lat_lon(city_name: str) -> tuple:
         lat = float(city_data[0]["lat"])
         lon = float(city_data[0]["lon"])
     except (KeyError, ValueError):
-        raise RuntimeError('Retrieved invalid city data form web service.')
+        raise RuntimeError('Retrieved invalid city data from web service.')
 
     return lat, lon
 
