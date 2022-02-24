@@ -31,6 +31,7 @@ def get_rain_data(file=None) -> list:
 def get_lat_lon(city: str) -> tuple:
     query = {'city': city, 'format': 'jsonv2', 'namedetails': 0, 'addressdetails': 0, 'limit': 1}
     response = requests.get("https://nominatim.openstreetmap.org/search.php", query)
+    response.raise_for_status()
     city_data = response.json()
 
     if len(city_data) == 0:
@@ -71,7 +72,13 @@ if __name__ == '__main__':
     except ValueError as e:
         raise SystemExit(e)
 
-    c_lat, c_lon = get_lat_lon(city)
+    try:
+        c_lat, c_lon = get_lat_lon(city)
+    except requests.exceptions.HTTPError as e:
+        raise SystemExit(e)
+    except requests.exceptions.RequestException:
+        raise SystemExit('Network error.')
+
     dates = get_rainy_days(rain_data)
 
     # dates=sorted(list(set(dates)))
