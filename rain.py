@@ -11,6 +11,11 @@ import requests
 # https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalPentadP05.csv?precip%5B(2021-8-01T00:00:00Z):1:(2021-11-26T00:00:00Z)%5D%5B(30.0):1:(42.0)%5D%5B(-123.0):1:(-113.0)%5D
 
 def load_rain_data(filename=None) -> list:
+    """
+    Load precipitation data from file.
+    :param filename: The path to the CSV file containing precipitation data.
+    :return: The contents of filename as a list.
+    """
     import pathlib
     filename = filename or pathlib.Path(__file__).parent.joinpath(
         'chirps20GlobalPentadP05_1da0_1624_398c.csv').resolve()
@@ -30,6 +35,11 @@ def load_rain_data(filename=None) -> list:
 
 
 def get_lat_lon(city: str) -> tuple:
+    """
+    Get the longitude and latitude of a city.
+    :param city: The name of the city.
+    :return: The longitude and latitude of the city as a two-tuple.
+    """
     query = {'city': city, 'format': 'jsonv2', 'namedetails': 0, 'addressdetails': 0, 'limit': 1}
     response = requests.get("https://nominatim.openstreetmap.org/search.php", query)
     response.raise_for_status()
@@ -48,6 +58,14 @@ def get_lat_lon(city: str) -> tuple:
 
 
 def filter_rainy_days(location: tuple, data: list, dist_thresh=0.05, rain_thresh=8.0) -> list:
+    """
+    Filter data to just those periods where there was precipitation.
+    :param location: The longitude and latitude where you want to conduct your search.
+    :param data: Parsed precipitation data.
+    :param dist_thresh: Search radius.
+    :param rain_thresh: Minimum precipitation threshold.
+    :return: List containing just those periods where there was precipitation.
+    """
     assert len(location) == 2
 
     rainy_days = list()
