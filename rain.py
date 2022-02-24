@@ -82,4 +82,5 @@ if __name__ == '__main__':
 
     for item in dates:
         print(item)
-    print("number of rainy 5-days: " + str(len(dates)))
+
+    print(f'number of rainy 5-days: {len(dates)}')
