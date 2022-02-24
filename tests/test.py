@@ -17,5 +17,8 @@ class Tests(unittest.TestCase):
     def test_get_lat_lon_case_sensitivity(self):
         self.assertEqual(get_lat_lon('tOrOnTo'), ('43.6534817', '-79.3839347'))
 
+    def test_get_lat_lon_whitespace(self):
+        self.assertEqual(get_lat_lon(' Toronto  '), ('43.6534817', '-79.3839347'))
+
     def test_get_lat_lon_invalid_city(self):
         self.assertRaises(ValueError, get_lat_lon, 'FooBazBar')
