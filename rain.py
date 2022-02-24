@@ -16,7 +16,7 @@ def get_rain_data(file=None) -> list:
     with open(file) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=",")
         line_count = 0
-        rain_data = list()
+        rows = list()
         for row in csv_reader:
             line_count += 1
             if line_count <= 2:
@@ -24,8 +24,8 @@ def get_rain_data(file=None) -> list:
                 continue
             elif line_count >= 10e10:
                 break
-            rain_data.append(row)
-        return rain_data
+            rows.append(row)
+        return rows
 
 
 def get_lat_lon(city: str) -> tuple:
