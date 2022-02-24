@@ -26,7 +26,6 @@ def load_rain_data(filename=None) -> list:
         for row in csv_reader:
             line_count += 1
             if line_count <= 2:
-                # print(f'Column names are {", ".join(row)}')
                 continue
             elif line_count >= 10e10:
                 break
