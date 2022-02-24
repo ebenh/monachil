@@ -19,7 +19,7 @@ def load_rain_data(filename=None) -> list:
     """
     import pathlib
     filename = filename or pathlib.Path(__file__).parent.joinpath(
-        'chirps20GlobalPentadP05_1da0_1624_398c.csv').resolve()
+        'data/chirps20GlobalPentadP05_1da0_1624_398c.csv').resolve()
     with open(filename) as file:
         csv_reader = csv.reader(file, delimiter=",")
         line_count = 0
