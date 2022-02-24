@@ -10,7 +10,7 @@ import requests
 # note eben: The url above had an invalid parameter, had to set stride from 0.25 to 1
 # https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalPentadP05.csv?precip%5B(2021-8-01T00:00:00Z):1:(2021-11-26T00:00:00Z)%5D%5B(30.0):1:(42.0)%5D%5B(-123.0):1:(-113.0)%5D
 
-def get_rain_data(file=None) -> list:
+def load_rain_data(file=None) -> list:
     import pathlib
     file = file or pathlib.Path(__file__).parent.joinpath('chirps20GlobalPentadP05_1da0_1624_398c.csv').resolve()
     with open(file) as csv_file:
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     sys.tracebacklimit = 0
 
     try:
-        rain_data = get_rain_data()
+        rain_data = load_rain_data()
     except FileNotFoundError:
         raise SystemExit('Rain data file not found.')
 
