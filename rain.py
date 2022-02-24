@@ -80,7 +80,7 @@ if __name__ == '__main__':
 
     dates = filter_rainy_days(city_lat_lon, rain_data)
 
-    for item in dates:
-        print(item)
+    for date, val in dates:
+        print(f'PERIOD STARTING: {date}, PRECIPITATION: {val} mm/(5days)')
 
-    print(f'number of rainy 5-days: {len(dates)}')
+    print(f'Number of 5-days periods with precipitation: {len(dates)}')
