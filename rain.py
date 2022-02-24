@@ -10,8 +10,6 @@ import pprint
 # note eben: The url above had an invalid parameter, had to set stride from 0.25 to 1
 # https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalPentadP05.csv?precip%5B(2021-8-01T00:00:00Z):1:(2021-11-26T00:00:00Z)%5D%5B(30.0):1:(42.0)%5D%5B(-123.0):1:(-113.0)%5D
 
-# csv_file = open("/home/moe/Downloads/chirps20GlobalPentadP05_233e_7ccc_b137.csv")
-
 def get_rain_data() -> list:
     csv_file = open("chirps20GlobalPentadP05_1da0_1624_398c.csv")
     csv_reader = csv.reader(csv_file, delimiter=",")
