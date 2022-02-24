@@ -29,11 +29,8 @@ def get_rain_data(file=None) -> list:
 
 
 def get_lat_lon(city: str) -> tuple:
-    response = requests.get(
-        "https://nominatim.openstreetmap.org/search.php?city="
-        + city
-        + "&format=jsonv2&namedetails=0&addressdetails=0&limit=1"
-    )
+    query = {'city': city, 'format': 'jsonv2', 'namedetails': 0, 'addressdetails': 0, 'limit': 1}
+    response = requests.get("https://nominatim.openstreetmap.org/search.php", query)
     city_data = response.json()
 
     if len(city_data) == 0:
