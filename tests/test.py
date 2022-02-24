@@ -1,5 +1,5 @@
 import unittest
-from rain import load_rain_data, get_lat_lon, filter_rainy_days
+from precip import load_rain_data, get_lat_lon, filter_rainy_days
 
 
 class Tests(unittest.TestCase):
