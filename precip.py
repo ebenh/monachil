@@ -96,9 +96,9 @@ if __name__ == '__main__':
     except requests.exceptions.RequestException:
         raise SystemExit('Network error.')
 
-    filtered_data = filter_rainy_days(city_lat_lon, rain_data)
+    filtered_rain_data = filter_rainy_days(city_lat_lon, rain_data)
 
-    for date, val in filtered_data:
+    for date, val in filtered_rain_data:
         print(f'PERIOD STARTING: {date}, PRECIPITATION: {val} mm/(5days)')
 
-    print(f'Number of 5-days periods with precipitation: {len(filtered_data)}')
+    print(f'Number of 5-days periods with precipitation: {len(filtered_rain_data)}')
