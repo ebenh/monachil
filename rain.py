@@ -38,12 +38,12 @@ def get_lat_lon(city: str) -> tuple:
         raise ValueError(f"{city} doesn't appear to be a valid city.")
 
     try:
-        c_lat = float(city_data[0]["lat"])
-        c_lon = float(city_data[0]["lon"])
+        lat = float(city_data[0]["lat"])
+        lon = float(city_data[0]["lon"])
     except (KeyError, ValueError):
         raise RuntimeError('Retrieved invalid city data form web service.')
 
-    return c_lat, c_lon
+    return lat, lon
 
 
 def get_rainy_days(rain_data: list) -> list:
