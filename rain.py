@@ -72,9 +72,7 @@ if __name__ == '__main__':
 
     try:
         city_lat_lon = get_lat_lon(city)
-    except ValueError as e:
-        raise SystemExit(e)
-    except requests.exceptions.HTTPError as e:
+    except (ValueError, requests.exceptions.HTTPError) as e:
         raise SystemExit(e)
     except requests.exceptions.RequestException:
         raise SystemExit('Network error.')
