@@ -12,13 +12,13 @@ class Tests(unittest.TestCase):
         self.assertRaises(FileNotFoundError, get_rain_data, '/home/eben/foo.csv')
 
     def test_get_lat_lon_valid_city(self):
-        self.assertEqual(get_lat_lon('Toronto'), ('43.6534817', '-79.3839347'))
+        self.assertEqual(get_lat_lon('Toronto'), (43.6534817, -79.3839347))
 
     def test_get_lat_lon_case_sensitivity(self):
-        self.assertEqual(get_lat_lon('tOrOnTo'), ('43.6534817', '-79.3839347'))
+        self.assertEqual(get_lat_lon('tOrOnTo'), (43.6534817, -79.3839347))
 
     def test_get_lat_lon_whitespace(self):
-        self.assertEqual(get_lat_lon(' Toronto  '), ('43.6534817', '-79.3839347'))
+        self.assertEqual(get_lat_lon(' Toronto  '), (43.6534817, -79.3839347))
 
     def test_get_lat_lon_invalid_city(self):
         self.assertRaises(ValueError, get_lat_lon, 'FooBazBar')
