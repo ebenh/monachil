@@ -12,7 +12,7 @@
 
         $ python3 -m pipenv install --dev
         $ python3 -m pipenv shell
-        $ python3 -m precip
+        $ python3 precip.py
 
 4. To run tests execute the following:
         
