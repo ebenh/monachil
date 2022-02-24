@@ -37,8 +37,12 @@ def get_lat_lon(city: str) -> tuple:
     if len(city_data) == 0:
         raise ValueError(f"{city} doesn't appear to be a valid city.")
 
-    c_lat = city_data[0]["lat"]
-    c_lon = city_data[0]["lon"]
+    try:
+        c_lat = city_data[0]["lat"]
+        c_lon = city_data[0]["lon"]
+    except KeyError:
+        raise RuntimeError('Retrieved invalid city data form web service.')
+
     return c_lat, c_lon
 
 
